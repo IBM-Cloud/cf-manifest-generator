@@ -74,8 +74,8 @@
               <server>BlueMix</server>
               <target>https://api.ng.bluemix.net</target>
               <appname>cf-manifest-generator</appname>
-              <org>rjbaxter@us.ibm.com</org>
-              <space>dev</space>
+              <org>${org}</org>
+              <space>${space}</space>
               <buildpack>https://github.com/cloudfoundry/java-buildpack.git</buildpack>
               <instances>1</instances>
               <memory>512</memory>
