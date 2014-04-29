@@ -60,18 +60,19 @@
       </div>
       
       <h2>Usage</h2>
-      <p>Fill out the form below and click the generate button to quickly construct your manifest.  Then copy
-      the generated YAML and save it into a file called manifest.yml.  Shazam!  Your cf push commands are
+      <p>Fill out the form below and click the generate button to quickly construct your manifest.  Click the 
+      Generate button to see what the manifest file will look like.  Once you are satisfied, click Download
+      to save your generated manifest file.  Shazam!  Your cf push commands are
       manageable again.</p>
       <p>If you need help put, focus in any field to open the tooltip.  If you need more help see the
       Cloud Foundry <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html" target="_blank">documentation</a> on manifests.</p>
       
       <h2>Get Started!</h2>
-      <form class="form-horizontal">
+      <form class="form-horizontal" action="download" method="post">
         <div class="form-group">
       	  <label id="appNameLabel" class="col-sm-2 control-label">App Name</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputAppName" placeholder="My App" 
+            <input class="form-control" id="inputAppName" name="appName" placeholder="My App" 
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="The name of your application.  This is the only required attribute.">
           </div>
@@ -90,7 +91,7 @@
         <div class="form-group" style="display:none;" id="hostFormGroup">
           <label class="col-sm-2 control-label">Host</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputHost" placeholder="myapp"
+            <input class="form-control" id="inputHost" name="host" placeholder="myapp"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="Specify a host if you do not want to use the app name as the host.">
           </div>
@@ -98,7 +99,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Domain</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputDomain" placeholder="myapp.com"
+            <input class="form-control" id="inputDomain" name="domain" placeholder="myapp.com"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="Specify a domain if you want to use something other than the default.">
           </div>
@@ -106,7 +107,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Memory</label>
           <div class="col-sm-10">
-            <select id="inputMemory" class="form-control"
+            <select id="inputMemory" class="form-control" name="memory"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="Specify the amount of memory your app needs to run.">
               <option value="128">128MB</option>
@@ -133,7 +134,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Instances</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputInstances" placeholder="1"
+            <input class="form-control" id="inputInstances" placeholder="1" name="instances"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="Specifies the number of app instances you want to start upon push.">
             <div class="alert alert-danger" id="instancesAlert" style="display: none">
@@ -144,7 +145,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Buildpack</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputBuildpack" placeholder="https://github.com/me/mybuildpack.git"
+            <input class="form-control" id="inputBuildpack" name="buildpack" placeholder="https://github.com/me/mybuildpack.git"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="The buildpack to use to run the application.">
           </div>
@@ -152,7 +153,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Path</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputPath" placeholder="target/myapp.jar"
+            <input class="form-control" id="inputPath" placeholder="target/myapp.jar" name="path"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="The path to the application to push.  This is generally not necessary when you run cf push from the directory where an application is located.">
           </div>
@@ -161,7 +162,7 @@
           <label class="col-sm-2 control-label">Timeout</label>
           <div class="col-sm-10">
             <div class="input-group">
-              <input class="form-control" id="inputTimeout" placeholder="60"
+              <input class="form-control" id="inputTimeout" placeholder="60" name="timeout"
               data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
               data-content="Specify the timeout attribute to give your application more time to start.  By default every application is given 60 seconds.  The timeout cannot be more than 180 seconds.">
               <span class="input-group-addon">Seconds</span>
@@ -174,7 +175,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Command</label>
           <div class="col-sm-10">
-            <input class="form-control" id="inputCommand" placeholder="node app.js"
+            <input class="form-control" id="inputCommand" placeholder="node app.js" name="command"
             data-container="body" data-toggle="popover" data-placement="right" data-trigger="focus" 
             data-content="Specify a custom start command for your application.">
           </div>
@@ -193,6 +194,7 @@
         <div class="form-group" id="servicesFormGroup" style="display: none;">
           <label class="col-sm-2 control-label"></label>
           <div class="col-sm-10">
+          	 <input class="form-control" id="inputServicesFinal" name="services" style="display:none;">
             <div id="services"></div>
           </div>
         </div>
@@ -227,6 +229,7 @@
         <div class="form-group" id="envVarFormGroup" style="display: none;">
           <label class="col-sm-2 control-label"></label>
           <div class="col-sm-10">
+            <input class="form-control" id="inputEnvValFinal" name="envVars" style="display:none;">
             <div id="envVars"></div>
           </div>
         </div>
@@ -234,7 +237,7 @@
           <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="route"
+                <input type="checkbox" id="route" name="route"
                 data-container="body" data-toggle="popover" data-placement="right" data-trigger="hover" 
                 data-content="Sepcifies if you would like your application to have no route."> No Route
               </label>
@@ -243,15 +246,19 @@
         </div>
         
         <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button id="downloadBtn" class="btn btn-lg btn-primary" disabled="disabled">Generate</button>
+        	<div class="row">
+          <div class="col-sm-offset-2 col-sm-1">
+            <button id="generateBtn" class="btn btn-lg btn-primary" disabled="disabled">Generate</button>
+          </div>
+          <div class="col-sm-offset-2 col-sm-1">
+            <button id="downloadBtn" class="btn btn-lg btn-primary" type="submit" disabled="disabled">Download</button>
+          </div>
           </div>
         </div>
       </form>
 
       <div id="yamlContainer" style="display: none;" class="row">
       	<h1>Generated Manifest</h1>
-      	<p>Copy and save this to a file called manifest.yml.</p>
         <pre id="yaml">
         </pre>
       </div>
