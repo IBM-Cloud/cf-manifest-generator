@@ -26,7 +26,7 @@ $( document ).ready(function() {
                     'https://github.com/friism/heroku-buildpack-mono', 'https://github.com/davidl-zend/zend-server-mysql-buildpack-dev',
                     'https://github.com/tsl0922/java-buildpack', 'https://github.com/glyn/virgo-buildpack', 'https://github.com/heroku/heroku-buildpack-php',
                     'https://github.com/iphoting/heroku-buildpack-php-tyler', 'https://github.com/heroku/heroku-buildpack-scala'];
-  var domains = ['ng.bluemix.net', 'cfapps.io'];
+  var domains = ['mybluemix.net', 'cfapps.io'];
   
   //***************************************************
   // U T I L I T Y  F U N C T I O N S

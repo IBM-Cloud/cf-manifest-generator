@@ -79,7 +79,7 @@
               <buildpack>https://github.com/cloudfoundry/java-buildpack.git</buildpack>
               <instances>1</instances>
               <memory>512</memory>
-              <url>cfmanigen.ng.bluemix.net</url>
+              <url>cfmanigen.mybluemix.net</url>
               <services>
                 <!-- Add services you want to create and bind here -->
               </services>
