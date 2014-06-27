@@ -148,6 +148,7 @@ public class Manifest {
   public String toString() {
     StringBuffer buf = new StringBuffer();
     buf.append("---\n");
+    buf.append("applications:\n");
     buf.append("- name: " + appName + "\n");
     if(memory > 0) {
       buf.append("  memory: " + memory + "M\n");
