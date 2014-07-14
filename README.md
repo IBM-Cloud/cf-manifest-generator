@@ -10,7 +10,7 @@ find the manifest file and use the values within it to deploy your application.
 
 ## Getting The Source
 
-    git clone git@github.com:CodenameBlueMix/cf-manifest-generator.git
+    git clone git@github.com:IBM-Bluemix/cf-manifest-generator.git
 
 ## Building and Deploying
 
