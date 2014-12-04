@@ -1,4 +1,5 @@
 ## About
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/IBM-Bluemix/cf-manifest-generator?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Web app that will generate a Cloud Foundry manifest file to simplify the cf push command for your application.
 
